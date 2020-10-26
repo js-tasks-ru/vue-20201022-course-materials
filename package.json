@@ -1,0 +1,23 @@
+{
+  "name": "vue-20200925-course-materials",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/js-tasks-ru/vue-20200925-course-materials.git"
+  },
+  "keywords": [],
+  "author": "Grigorii K. Shartsev <me@shgk.me>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/js-tasks-ru/vue-20200925-course-materials/issues"
+  },
+  "homepage": "https://github.com/js-tasks-ru/vue-20200925-course-materials#readme",
+  "dependencies": {
+    "vue": "^2.6.12"
+  }
+}
