@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 </head>
 <body>
 
+<template id="v-cat-template">
+  <img :src="`https://cataas.com/cat?height=300&random=${random}`" alt="Random cat">
+</template>
+
+<script id="v-cat-x-template" type="text/x-template">
+  <img :src="`https://cataas.com/cat?height=300&random=${random}`" alt="Random cat">
+</script>
+
 <main id="app">
-  <img v-for="i in catsCount" :src="`https://cataas.com/cat?height=300&random=${i}`" alt="Random cat">
+  <v-cat></v-cat>
+  <hr>
+  <v-cat2></v-cat2>
+  <hr>
+  <v-cat3></v-cat3>
+  <hr>
+  <v-cat4></v-cat4>
+  <hr>
+  <v-cat5></v-cat5>
 </main>
 
 <script type="module" src="./script.js"></script>
