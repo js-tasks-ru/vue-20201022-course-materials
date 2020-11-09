@@ -1,0 +1,16 @@
+{
+  "name": "02-jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sum.js",
+  "scripts": {
+    "test": "jest --"
+  },
+  "keywords": [],
+  "author": "Grigorii K. Shartsev <me@shgk.me>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.5.3"
+  }
+}
