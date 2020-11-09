@@ -28,8 +28,14 @@
     </div>
 
     <template v-if="filteredMeetups && filteredMeetups.length">
-      <meetups-list v-if="view === 'list'" :meetups="filteredMeetups"></meetups-list>
-      <meetups-calendar v-else-if="view === 'calendar'" :meetups="filteredMeetups"></meetups-calendar>
+      <meetups-list
+        v-if="view === 'list'"
+        :meetups="filteredMeetups"
+      ></meetups-list>
+      <meetups-calendar
+        v-else-if="view === 'calendar'"
+        :meetups="filteredMeetups"
+      ></meetups-calendar>
     </template>
     <app-empty v-else>Митапов по заданным условям не найдено...</app-empty>
   </div>
@@ -37,17 +43,20 @@
 
 <script>
 import { fetchMeetups } from '@/data';
-import MeetupsList from './MeetupsList';
-import MeetupsCalendar from './MeetupsCalendar';
-import PageTabs from './PageTabs';
-import FormCheck from './FormCheck';
-import AppEmpty from './AppEmpty';
-import AppIcon from './AppIcon';
+import MeetupsList from '../components/MeetupsList';
+import MeetupsCalendar from '../components/MeetupsCalendar';
+import PageTabs from '../components/PageTabs';
+import FormCheck from '../components/FormCheck';
+import AppEmpty from '../components/AppEmpty';
+import AppIcon from '../components/AppIcon';
 
 const getDateOnlyString = (date) => {
   const YYYY = date.getFullYear();
   const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-  const DD = date.getDate().toString().padStart(2, '0');
+  const DD = date
+    .getDate()
+    .toString()
+    .padStart(2, '0');
   return `${YYYY}-${MM}-${DD}`;
 };
 

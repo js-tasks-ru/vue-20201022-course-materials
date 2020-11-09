@@ -1,5 +1,8 @@
 <template>
-  <a :href="`/meetups/${meetup.id}`" class="meetups-list__item">
+  <router-link
+    :to="{ name: 'meetup', params: { meetupId: meetup.id.toString() } }"
+    class="meetups-list__item"
+  >
     <div class="meetups-list__col">
       <div
         class="meetups-list__cover"
@@ -13,10 +16,10 @@
         <span
           v-if="meetup.attending"
           class="meetups-list__badge meetups-list__badge_success"
-          >Участвую</span
+        >Участвую</span
         >
         <span v-if="meetup.organizing" class="meetups-list__badge"
-          >Организую</span
+        >Организую</span
         >
         <ul class="info-list">
           <li>
@@ -34,7 +37,7 @@
         </ul>
       </div>
     </div>
-  </a>
+  </router-link>
 </template>
 
 <script>
