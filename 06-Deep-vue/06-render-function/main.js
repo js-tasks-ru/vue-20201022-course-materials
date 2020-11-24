@@ -3,18 +3,26 @@ import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js
 const TextDiv = {
   name: 'TextDiv',
 
-  template: '<div>Text</div>',
+  // template: '<div>Text</div>',
+
+  render(h) {
+    return h('div', 'Text');
+  },
 };
 
 const ParagraphComponent = {
   name: 'ParagraphComponent',
 
-  template: '<p><slot /></p>',
+  // template: '<p><slot /></p>',
+
+  render(h) {
+    return h('p', this.$slots.default);
+  },
 };
 
 const CounterButton = {
   name: 'CounterButton',
-  template: `<button @click="$emit('change', count + 1)">{{ count }}</button>`,
+  // template: `<button @click="$emit('change', count + 1)">{{ count }}</button>`,
 
   props: {
     count: Number,
@@ -24,20 +32,31 @@ const CounterButton = {
     prop: 'count',
     event: 'change',
   },
-};
 
+  render(h) {
+    return h(
+      'button',
+      {
+        on: {
+          click: () => this.$emit('change', this.count + 1),
+        },
+      },
+      this.count,
+    );
+  },
+};
 
 const App = {
   name: 'App',
 
   template: `<paragraph-component>
-  <text-div />
-  <counter-button v-model="count" />
+    <text-div />
+    <counter-button v-model="count" />
   </paragraph-component>`,
 
   components: {
-    ParagraphComponent,
-    TextDiv,
+    // ParagraphComponent,
+    // TextDiv,
   },
 
   data() {
@@ -45,10 +64,35 @@ const App = {
       count: 0,
     };
   },
+
+  render(h) {
+    const content = [
+      h(TextDiv),
+      h(CounterButton, {
+        model: {
+          value: this.count,
+          callback: (value) => {
+            this.count = value;
+          },
+          expression: 'count',
+        },
+        // props: {
+        //   count: this.count,
+        // },
+        // on: {
+        //   change: ($event) => {
+        //     this.count = $event;
+        //   },
+        // },
+      }),
+    ];
+
+    return h(ParagraphComponent, content);
+  },
 };
 
 const app = new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount('#app');
 
 /*

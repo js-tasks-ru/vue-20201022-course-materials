@@ -25,7 +25,7 @@ const App = {
         {
           id: Math.random(),
           value: 'b',
-        }
+        },
       ],
       obj: {
         id: Math.random(),
@@ -60,10 +60,12 @@ const App = {
         value: this.items[0].value + '!',
       };
       this.$set(this.items, 0, newValue);
+      // this.$delete(this.item, 1);
     },
 
     addNewKey() {
       this.obj.newKey = 'New Value';
+      // this.$set(this.obj, 'newKey', 'New Value');
     },
 
     addNewKeyWithReassign() {
@@ -84,12 +86,12 @@ const App = {
     },
 
     addNewKeyWithSet() {
-      this.$set(this.obj, 'newKey', 'New Value')
+      this.$set(this.obj, 'newKey', 'New Value');
       // this.$set(this.items[0], 'newKey', 'New Value') -- не сработает
     },
   },
 };
 
 const app = new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount('#app');

@@ -3,8 +3,8 @@ import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js
 const genId = () => Math.random().toFixed(3).substr(2, 3);
 
 const ListItem = {
-  template: '<div>{{ value }}</div>',
-  // template: '<div><input :value="value"></div>',
+  // template: '<div>{{ value }}</div>',
+  template: '<div><input :value="value"></div>',
   props: ['item'],
   data() {
     return {
@@ -45,7 +45,7 @@ const App = {
         { id: genId(), value: 'b' },
         { id: genId(), value: 'c' },
       ],
-    }
+    };
   },
 
   methods: {
@@ -57,7 +57,7 @@ const App = {
       this.list.unshift({ id: genId(), value: 'NEW' });
     },
   },
-}
+};
 
 const app = new Vue({
   render: (h) => h(App),

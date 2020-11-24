@@ -27,19 +27,21 @@ const FormGroup = {
 
 const App = {
   template: `<div>
-  <form-group v-for="input in inputs" :key="input.id" :code="input.id">
-    <app-input v-model="input.value" :code="input.id" />
-  </form-group>
-</div>`,
+    <form-group v-for="input in inputs" :key="input.id" :code="input.id">
+      <template #default>
+        <app-input v-model="input.value" :code="input.id" />
+      </template>
+    </form-group>
+  </div>`,
 
   components: {
     FormGroup,
-    AppInput
+    AppInput,
   },
 
   data() {
     return {
-      inputs: Array.from(Array(2), () => ({ value: '', id: genId() })),
+      inputs: Array.from(Array(1000), () => ({ value: '', id: genId() })),
     };
   },
 };
