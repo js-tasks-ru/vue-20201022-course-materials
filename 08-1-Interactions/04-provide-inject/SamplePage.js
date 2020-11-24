@@ -11,15 +11,19 @@ export default {
       width: 500px;
       height: 500px;"
   >
-  <app-toast ref="localToaster" />
   <button @click="localToast">Local Toast</button>
 </div>`,
 
   components: { AppToast },
 
+  inject: {
+    toaster: 'toaster',
+    config: 'config',
+  },
+
   methods: {
     localToast() {
-      this.$refs['localToaster'].success('Toast');
+      this.toasterPlugin.success('Toast from inject: ' + this.config.API_URL);
     },
   },
 };

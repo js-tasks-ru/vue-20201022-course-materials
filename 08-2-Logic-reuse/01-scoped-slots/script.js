@@ -4,10 +4,15 @@ const ListView = {
   template: `
     <ul>
     <li v-for="(item, idx) in items_">
-      <span>{{ item }}</span>
-      <button @click="remove(idx)">x</button>
+      <slot :item="item">
+        <span>{{ item }}</span>
+      </slot>
+      <slot name="remove-button" :remove="() => remove(idx)">
+        <button @click="remove(idx)">x</button>
+      </slot>
     </li>
     </ul>`,
+
   props: {
     items: Array,
   },
@@ -28,7 +33,15 @@ const ListView = {
 
 const App = {
   template: `<div>
-  <list-view :items.sync="list" />
+    <list-view :items.sync="list">
+      <template #default="{ item }">
+        <b>{{ item }}</b>
+      </template>
+
+      <template #remove-button="{ remove }">
+        <a href="#" @click="remove">Remove</a>
+      </template>
+    </list-view>
 </div>`,
 
   components: {
@@ -40,6 +53,6 @@ const App = {
       list: [1, 2, 3, 4, 5],
     };
   },
-}
+};
 
 const app = new Vue(App).$mount('#app');

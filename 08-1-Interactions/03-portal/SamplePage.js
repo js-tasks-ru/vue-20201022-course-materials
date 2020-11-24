@@ -1,4 +1,5 @@
 import AppToast from './AppToast.js';
+import { Portal } from './portal-vue.esm.js';
 
 export default {
   name: 'SamplePage',
@@ -11,11 +12,21 @@ export default {
       width: 500px;
       height: 500px;"
   >
-  <app-toast ref="localToaster" />
+  <portal to="root-end">
+    <app-toast ref="localToaster" />
+  </portal>
   <button @click="localToast">Local Toast</button>
 </div>`,
 
-  components: { AppToast },
+  components: { AppToast, Portal },
+
+  mounted() {
+    this.$nextTick(() => {
+      this.$nextTick(() => {
+        this.$refs['localToaster'].success('Mounted Toast');
+      });
+    });
+  },
 
   methods: {
     localToast() {

@@ -5,7 +5,7 @@ const ChildComponent1 = {
 
   data() {
     return {
-      value: 'C2',
+      value: 'C1',
     };
   },
 };
@@ -15,7 +15,7 @@ const ChildComponent2 = {
 
   data() {
     return {
-      value: 'C1',
+      value: 'C2',
     };
   },
 };
@@ -25,6 +25,7 @@ const MiddleComponent = {
 <div>
   <child-component1 />
   <child-component2 />
+  <hr>
   <p>Parent value = {{ $parent.value }} ($parent.value)</p>
   <p>Root value = {{ $root.value }} ($root.value)</p>
   <p v-for="(child, i) in $children">Child value = {{ child.value }} ($children[i].value)</p>
@@ -44,11 +45,11 @@ const MiddleComponent = {
 
     // После следующего тика дети будут уже смонтированы
     this.$nextTick().then(() => {
+      console.log(this.$children.length);
       // forceUpdate заставит перерендерить компонент и вывести новое значение $children
-      // this.$forceUpdate();
+      this.$forceUpdate();
     });
-
-  }
+  },
 };
 
 const ParentComponent = {

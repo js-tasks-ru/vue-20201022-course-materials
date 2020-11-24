@@ -1,7 +1,7 @@
 import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
 
 import { localPropMixin } from './local-prop-mixin.js';
-import { windowSizeMixin } from './window-size-mixin.js';
+import { windowSize } from './window-size.js';
 
 const UserForm = {
   template: `<form>
@@ -23,8 +23,18 @@ const App = {
 
   components: { UserForm },
 
+  props: {
+    myProps: {},
+    ...windowSize.props,
+  },
+
+  mounted() {
+    windowSize.mounted();
+  },
+
   data() {
     return {
+      ...windowSize.data(),
       user: {
         firstName: 'firstName',
         lastName: 'lastName',
@@ -32,9 +42,15 @@ const App = {
     };
   },
 
-  mixins: [windowSizeMixin],
+  methods: {
+    ...windowSize.methods,
+  },
+
+  beforeDestroy() {
+    windowSize.beforeDestroy();
+  },
 };
 
 const app = new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount('#app');
