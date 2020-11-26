@@ -1,48 +1,32 @@
 <template>
   <div class="wrapper page container">
-    <meetup-form :meetup="meetup" />
-    <hr />
-    <button @click="updateMeetup">Update Meetup</button>
-    <pre><code>{{ meetup }}</code></pre>
+    <meetup-form v-if="$store.state['form'].meetup" />
   </div>
 </template>
 
 <script>
 import MeetupForm from './components/MeetupForm';
 
-function buildMeetup() {
-  return {
-    id: null,
-    title: '',
-    description: '',
-    imageId: null,
-    date: new Date(),
-    place: '',
-    agenda: [],
-  };
-}
-
 export default {
-  name: 'SamplePage',
+  name: 'App',
 
   components: {
     MeetupForm,
   },
 
-  data() {
-    return {
-      meetup: buildMeetup(),
-    };
-  },
-
-  methods: {
-    updateMeetup() {
-      this.meetup.title += '!';
-      if (this.meetup.agenda.length) {
-        this.meetup.agenda[0].title += '!';
-      }
-    },
-  },
+  created() {
+    if (!this.$store.state['form'].meetup) {
+      this.$store.commit('form/SET_MEETUP', {
+        id: null,
+        title: '',
+        description: '',
+        imageId: null,
+        date: new Date(),
+        place: '',
+        agenda: [],
+      })
+    }
+  }
 };
 </script>
 

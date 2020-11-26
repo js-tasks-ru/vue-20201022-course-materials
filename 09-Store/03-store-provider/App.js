@@ -13,11 +13,17 @@ export default {
     LoginPage,
   },
 
+  inject: {
+    auth: 'auth',
+  },
+
   computed: {
     user() {
+      return this.auth.user;
     },
 
     isAuthenticated() {
+      return !!this.auth.user;
     },
   },
 };

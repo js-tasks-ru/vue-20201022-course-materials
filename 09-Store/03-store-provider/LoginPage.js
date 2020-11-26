@@ -7,7 +7,7 @@ export default {
       <input v-model="email" placeholder="email"/>
     </p>
     <p>
-      <input v-model="password" type="password" placeholder="password" />
+      <input v-model="password" type="password" placeholder="password"/>
     </p>
     <p>
       <button>Submit</button>
@@ -21,7 +21,16 @@ export default {
     };
   },
 
+  inject: {
+    auth: 'auth',
+    login: 'login',
+  },
+
   methods: {
-    handleSubmit() {},
+    handleSubmit() {
+      this.login(this.email, this.password).catch((err) => {
+        alert(err.message);
+      });
+    },
   },
 };

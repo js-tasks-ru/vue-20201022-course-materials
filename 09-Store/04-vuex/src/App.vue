@@ -7,6 +7,7 @@
 
 <script>
 import LoginPage from './components/LoginPage';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -16,11 +17,13 @@ export default {
   },
 
   computed: {
-    user() {
-    },
+    ...mapState('auth', {
+      user: (state) => state.user,
+    }),
 
-    isAuthenticated() {
-    },
+    ...mapGetters('auth', {
+      isAuthenticated: 'IS_AUTHENTICATED',
+    }),
   },
 };
 </script>
